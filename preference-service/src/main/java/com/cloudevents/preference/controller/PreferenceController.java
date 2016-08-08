@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.util.Map;
 
-import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
@@ -56,15 +57,13 @@ public class PreferenceController {
         return "Preference Service REST Controller...";
     }
 
-    @ResponseStatus(CONFLICT)
-    @ExceptionHandler (PreferenceNotFoundException.class)
-    public String handlePreferenceNotFoundException(final Exception e) {
-        return e.getMessage();
+    @ExceptionHandler(PreferenceNotFoundException.class)
+    @ResponseStatus(value = NOT_FOUND, reason = "This user preference is not found in the system...")
+    public void handlePreferenceNotFoundException(final Exception e) {
     }
 
-    @ResponseStatus(CONFLICT)
     @ExceptionHandler (RedisConnectionFailureException.class)
-    public String handleRedisServerException(final Exception e) {
-        return "Redis server is not available. Please check the server...";
+    @ResponseStatus(value = INTERNAL_SERVER_ERROR, reason = "Redis server is not available. Please check the server...")
+    public void handleRedisServerException(final Exception e) {
     }
 }
