@@ -1,0 +1,27 @@
+GET: http://localhost:8080/preference/ping
+GET: http://localhost:8080/preference/findAll
+GET: http://localhost:8080/preference/find/{id}
+POST: http://localhost:8080/preference/update
+POST: http://localhost:8080/preference/save
+
+JSON Request:
+{
+    "id":"003199b9-2b2e-415e-a05b-a8e6c550ca5f",
+    "orgId":"6a196ee3-99da-4623-880e-f7af5ff251dd",
+    "username":"DemoUser",
+    "geo":{
+        "subscribed":true,
+        "geoTypes":[
+            "CA"
+        ]
+    },
+    "events":{
+        "subscribed":true,
+        "eventTypes":[
+            "SERVER_DEPLOY"
+        ]
+    },
+    "ownership":{
+        "subscribed":true
+    }
+}
