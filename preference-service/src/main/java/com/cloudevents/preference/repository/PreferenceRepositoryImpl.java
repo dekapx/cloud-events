@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class PreferenceRepositoryImpl implements PreferenceRepository {
@@ -49,9 +50,8 @@ public class PreferenceRepositoryImpl implements PreferenceRepository {
 
     @Override
     public UserPreference find(final String id) {
-        final UserPreference preference = (UserPreference) hashOperations.get(KEY, id);
-        LOGGER.info("preference found {} for ID {}", preference, id);
-        return preference;
+        final Optional<UserPreference> optional = Optional.ofNullable((UserPreference) hashOperations.get(KEY, id));
+        return optional.orElseThrow(PreferenceNotFoundException::new);
     }
 
     @Override

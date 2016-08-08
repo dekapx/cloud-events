@@ -1,15 +1,16 @@
 package com.cloudevents.preference.controller;
 
 import com.cloudevents.preference.domain.UserPreference;
+import com.cloudevents.preference.repository.PreferenceNotFoundException;
 import com.cloudevents.preference.service.PreferenceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-
 import java.util.Map;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
@@ -55,9 +56,15 @@ public class PreferenceController {
         return "Preference Service REST Controller...";
     }
 
-    @ExceptionHandler
     @ResponseStatus(CONFLICT)
-    public String handleException(Exception e) {
+    @ExceptionHandler (PreferenceNotFoundException.class)
+    public String handlePreferenceNotFoundException(final Exception e) {
         return e.getMessage();
+    }
+
+    @ResponseStatus(CONFLICT)
+    @ExceptionHandler (RedisConnectionFailureException.class)
+    public String handleRedisServerException(final Exception e) {
+        return "Redis server is not available. Please check the server...";
     }
 }
