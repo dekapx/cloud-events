@@ -1,10 +1,10 @@
 package com.cloudevents.preference.domain;
 
-public enum GeoTypes
-{
-    NA ("NorthAmerica"), EU ("Europe"), CA("Canada");
+public enum GeoTypes {
+    NA("NorthAmerica"), EU("Europe"), CA("Canada");
 
     private String geoType;
+
     private GeoTypes(final String geoType) {
         this.geoType = geoType;
     }

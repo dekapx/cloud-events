@@ -62,7 +62,7 @@ public class PreferenceController {
     public void handlePreferenceNotFoundException(final Exception e) {
     }
 
-    @ExceptionHandler (RedisConnectionFailureException.class)
+    @ExceptionHandler(RedisConnectionFailureException.class)
     @ResponseStatus(value = INTERNAL_SERVER_ERROR, reason = "Redis server is not available. Please check the server...")
     public void handleRedisServerException(final Exception e) {
     }

@@ -10,36 +10,29 @@ import java.util.List;
  * If Geo subscribed is true and Geo locations are specified: Only selected Geo events are subscribed.
  * If Geo subscribed is FALSE: No Geo subscribed.
  */
-public class Geo implements Serializable
-{
+public class Geo implements Serializable {
     private boolean subscribed;
     private List<GeoTypes> geoTypes;
 
-    public Geo()
-    {
-        if (this.geoTypes == null)
-        {
+    public Geo() {
+        if (this.geoTypes == null) {
             this.geoTypes = new ArrayList<>();
         }
     }
 
-    public boolean isSubscribed()
-    {
+    public boolean isSubscribed() {
         return subscribed;
     }
 
-    public void setSubscribed(boolean subscribed)
-    {
+    public void setSubscribed(boolean subscribed) {
         this.subscribed = subscribed;
     }
 
-    public List<GeoTypes> getGeoTypes()
-    {
+    public List<GeoTypes> getGeoTypes() {
         return geoTypes;
     }
 
-    public void setGeoTypes(List<GeoTypes> geoTypes)
-    {
+    public void setGeoTypes(List<GeoTypes> geoTypes) {
         this.geoTypes.addAll(geoTypes);
     }
 }

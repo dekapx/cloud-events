@@ -9,13 +9,11 @@ import java.io.Serializable;
 public class Ownership implements Serializable {
     private boolean subscribed;
 
-    public boolean isSubscribed()
-    {
+    public boolean isSubscribed() {
         return subscribed;
     }
 
-    public void setSubscribed(boolean subscribed)
-    {
+    public void setSubscribed(boolean subscribed) {
         this.subscribed = subscribed;
     }
 }

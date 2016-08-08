@@ -10,8 +10,7 @@ import java.util.List;
  * If events subscribed is TRUE and event type is specified: Only selected events are subscribed
  * If events subscribed is FALSE: No events are subscribed
  */
-public class Events implements Serializable
-{
+public class Events implements Serializable {
     private boolean subscribed;
     private List<EventTypes> eventTypes;
 

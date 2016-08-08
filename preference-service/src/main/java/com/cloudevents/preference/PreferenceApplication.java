@@ -13,7 +13,7 @@ public class PreferenceApplication extends SpringBootServletInitializer {
     }
 
     @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+    public SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(PreferenceApplication.class);
     }
 

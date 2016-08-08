@@ -34,16 +34,16 @@ import java.util.Properties;
 @ComponentScan("com.cloudevents.integration")
 public class KafkaConfig {
     @Value("${kafka.topic}")
-   	private String topic;
+    private String topic;
 
-   	@Value("${kafka.messageKey}")
-   	private String messageKey;
+    @Value("${kafka.messageKey}")
+    private String messageKey;
 
-   	@Value("${kafka.broker.address}")
-   	private String brokerAddress;
+    @Value("${kafka.broker.address}")
+    private String brokerAddress;
 
-   	@Value("${kafka.zookeeper.connect}")
-   	private String zookeeperConnect;
+    @Value("${kafka.zookeeper.connect}")
+    private String zookeeperConnect;
 
     @Bean
     @ServiceActivator(inputChannel = "toKafka")
@@ -55,59 +55,59 @@ public class KafkaConfig {
     }
 
     @Bean
-   	public KafkaTemplate<String, String> kafkaTemplate() {
-   		return new KafkaTemplate<>(producerFactory());
-   	}
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
 
     @Bean
-   	public ProducerFactory<String, String> producerFactory() {
-   		final Map<String, Object> props = new HashMap<>();
-   		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, this.brokerAddress);
-   		props.put(ProducerConfig.RETRIES_CONFIG, 0);
-   		props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
-   		props.put(ProducerConfig.LINGER_MS_CONFIG, 1);
-   		props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
-   		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-   		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-   		return new DefaultKafkaProducerFactory<>(props);
-   	}
+    public ProducerFactory<String, String> producerFactory() {
+        final Map<String, Object> props = new HashMap<>();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, this.brokerAddress);
+        props.put(ProducerConfig.RETRIES_CONFIG, 0);
+        props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
+        props.put(ProducerConfig.LINGER_MS_CONFIG, 1);
+        props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        return new DefaultKafkaProducerFactory<>(props);
+    }
 
-	@Bean
-	public KafkaMessageListenerContainer<String, String> container() throws Exception {
-		return new KafkaMessageListenerContainer<>(consumerFactory(), new ContainerProperties(new TopicPartitionInitialOffset(this.topic, 0)));
-	}
+    @Bean
+    public KafkaMessageListenerContainer<String, String> container() throws Exception {
+        return new KafkaMessageListenerContainer<>(consumerFactory(), new ContainerProperties(new TopicPartitionInitialOffset(this.topic, 0)));
+    }
 
-	@Bean
-	public ConsumerFactory<String, String> consumerFactory() {
-		Map<String, Object> props = new HashMap<>();
-		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.brokerAddress);
-		props.put(ConsumerConfig.GROUP_ID_CONFIG, "siTestGroup");
-		props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
-		props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 100);
-		props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 15000);
-		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-		return new DefaultKafkaConsumerFactory<>(props);
-	}
+    @Bean
+    public ConsumerFactory<String, String> consumerFactory() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.brokerAddress);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "siTestGroup");
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
+        props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 100);
+        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 15000);
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        return new DefaultKafkaConsumerFactory<>(props);
+    }
 
-	@Bean
-	public KafkaMessageDrivenChannelAdapter<String, String>
-				adapter(KafkaMessageListenerContainer<String, String> container) {
-		KafkaMessageDrivenChannelAdapter<String, String> kafkaMessageDrivenChannelAdapter =
-				new KafkaMessageDrivenChannelAdapter<>(container);
-		kafkaMessageDrivenChannelAdapter.setOutputChannel(received());
-		return kafkaMessageDrivenChannelAdapter;
-	}
+    @Bean
+    public KafkaMessageDrivenChannelAdapter<String, String>
+    adapter(KafkaMessageListenerContainer<String, String> container) {
+        KafkaMessageDrivenChannelAdapter<String, String> kafkaMessageDrivenChannelAdapter =
+                new KafkaMessageDrivenChannelAdapter<>(container);
+        kafkaMessageDrivenChannelAdapter.setOutputChannel(received());
+        return kafkaMessageDrivenChannelAdapter;
+    }
 
-	@Bean
-	public PollableChannel received() {
-		return new QueueChannel();
-	}
+    @Bean
+    public PollableChannel received() {
+        return new QueueChannel();
+    }
 
-	@Bean
-	public TopicCreator topicCreator() {
-		return new TopicCreator(this.topic, this.zookeeperConnect);
-	}
+    @Bean
+    public TopicCreator topicCreator() {
+        return new TopicCreator(this.topic, this.zookeeperConnect);
+    }
 
     public static class TopicCreator implements SmartLifecycle {
         private final String topic;
@@ -131,7 +131,7 @@ public class KafkaConfig {
         }
 
         @Override
-        public void stop(){
+        public void stop() {
         }
 
         @Override

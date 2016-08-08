@@ -7,12 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 
 public class JsonUtil {
-    public static <T> String  objectToJson(T object) throws JsonProcessingException {
+    public static <T> String objectToJson(T object) throws JsonProcessingException {
         final ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(object);
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         final Geo geo = new Geo();
         geo.setGeoTypes(Arrays.asList(GeoTypes.CA));
         geo.setSubscribed(true);

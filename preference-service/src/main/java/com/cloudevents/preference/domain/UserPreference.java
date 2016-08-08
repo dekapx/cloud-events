@@ -10,63 +10,51 @@ public class UserPreference implements Serializable {
     private Events events;
     private Ownership ownership;
 
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
-    public void setId(String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getOrgId()
-    {
+    public String getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(String orgId)
-    {
+    public void setOrgId(String orgId) {
         this.orgId = orgId;
     }
 
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public Geo getGeo()
-    {
+    public Geo getGeo() {
         return geo;
     }
 
-    public void setGeo(Geo geo)
-    {
+    public void setGeo(Geo geo) {
         this.geo = geo;
     }
 
-    public Events getEvents()
-    {
+    public Events getEvents() {
         return events;
     }
 
-    public void setEvents(Events events)
-    {
+    public void setEvents(Events events) {
         this.events = events;
     }
 
-    public Ownership getOwnership()
-    {
+    public Ownership getOwnership() {
         return ownership;
     }
 
-    public void setOwnership(Ownership ownership)
-    {
+    public void setOwnership(Ownership ownership) {
         this.ownership = ownership;
     }
 }

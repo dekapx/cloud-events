@@ -12,8 +12,7 @@ import java.util.Map;
 
 @Service
 @Transactional
-public class PreferenceServiceImpl implements PreferenceService
-{
+public class PreferenceServiceImpl implements PreferenceService {
     private static final Logger LOGGER = LoggerFactory.getLogger(PreferenceServiceImpl.class);
 
     @Autowired
