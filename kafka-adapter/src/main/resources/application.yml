@@ -3,5 +3,5 @@ kafka:
     address: localhost:9092
   zookeeper:
     connect: localhost:2181
-  topic: si.topic
+  topic: kafka-topic
   messageKey: si.key
