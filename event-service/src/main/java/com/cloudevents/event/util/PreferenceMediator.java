@@ -19,9 +19,9 @@ public class PreferenceMediator {
 
     public UserPreference findPreferenceByUserId(final String userId) {
         try {
-            HttpClient httpClient = HttpClientBuilder.create().build();
-            HttpGet getRequest = new HttpGet(URI + userId);
-            HttpResponse response = httpClient.execute(getRequest);
+            final HttpClient httpClient = HttpClientBuilder.create().build();
+            final HttpGet getRequest = new HttpGet(URI + userId);
+            final HttpResponse response = httpClient.execute(getRequest);
             if (response.getStatusLine().getStatusCode() != 200)
             {
                 throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
