@@ -1,3 +1,5 @@
+server:
+  port: 8081
 kafka:
   broker:
     address: localhost:9092
