@@ -2,7 +2,7 @@ package com.cloudevents.preference.domain;
 
 
 public enum EventTypes {
-    SERVER_DEPLOY("ServerDeploy");
+    START_SERVER("Start Server"), SHUTDOWN_SERVER("Graceful Shutdown Server"), DEPLOY_SERVER("Deploy Server");
 
     private String eventType;
 

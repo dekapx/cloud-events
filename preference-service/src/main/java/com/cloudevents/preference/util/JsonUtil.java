@@ -18,7 +18,7 @@ public class JsonUtil {
         geo.setSubscribed(true);
 
         final Events events = new Events();
-        events.setEventTypes(Arrays.asList(EventTypes.SERVER_DEPLOY));
+        events.setEventTypes(Arrays.asList(EventTypes.START_SERVER, EventTypes.SHUTDOWN_SERVER, EventTypes.DEPLOY_SERVER));
         events.setSubscribed(true);
 
         final Ownership ownership = new Ownership();

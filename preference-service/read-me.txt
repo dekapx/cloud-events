@@ -18,7 +18,9 @@ JSON Request:
     "events":{
         "subscribed":true,
         "eventTypes":[
-            "SERVER_DEPLOY"
+            "START_SERVER",
+            "SHUTDOWN_SERVER",
+            "DEPLOY_SERVER"
         ]
     },
     "ownership":{

@@ -51,6 +51,13 @@ public class PreferenceController {
         return preferenceService.findAll();
     }
 
+    @RequestMapping(value = "/delete/{id}", method = GET)
+    public ResponseEntity<Void> delete(@PathVariable final String id) {
+        LOGGER.info("--- Preference Service REST Controller ping method invoked. ---");
+        preferenceService.delete(id);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/ping", method = GET)
     public String ping() {
         LOGGER.info("--- Preference Service REST Controller ping method invoked. ---");
