@@ -24,6 +24,7 @@ public class EventHandlerTopology
 
     private static final String KAFKA_SPOUT = "kafka-spout";
     private static final String EVENT_PROCESSOR_BOLT = "event-processor-bolt";
+    private static final String PREFERENCE_HANDLER_BOLT = "preference-handler-bolt";
 
     @PostConstruct
     public void init() {
@@ -35,6 +36,8 @@ public class EventHandlerTopology
 
         final TopologyBuilder builder = new TopologyBuilder();
         buildKafkaSpout(builder);
+        buildEventProcessorBolt(builder);
+        buildPreferenceHandlerBolt(builder);
 
         final LocalCluster cluster = deployTopologyToLocalCluster(builder);
     }
@@ -57,7 +60,12 @@ public class EventHandlerTopology
         builder.setSpout(KAFKA_SPOUT, kafkaSpout, 1);
     }
 
-    private static void buildEventProcessorBolt(final TopologyBuilder builder) {
+    private void buildEventProcessorBolt(final TopologyBuilder builder) {
         builder.setBolt(EVENT_PROCESSOR_BOLT, new EventProcessorBolt()).shuffleGrouping(KAFKA_SPOUT);
     }
+
+    private void buildPreferenceHandlerBolt(final TopologyBuilder builder) {
+        builder.setBolt(PREFERENCE_HANDLER_BOLT, new PreferenceHandlerBolt()).shuffleGrouping(EVENT_PROCESSOR_BOLT);
+    }
+
 }

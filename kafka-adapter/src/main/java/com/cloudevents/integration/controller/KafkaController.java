@@ -20,9 +20,9 @@ public class KafkaController {
     private KafkaService kafkaService;
 
     @RequestMapping(value = "/toKafka", method = RequestMethod.POST)
-    public ResponseEntity<Void> sendEventToKafka(@RequestBody final String event) {
-        LOGGER.info("--- Event [{}] received. Dispatching it to kafka service ---", event);
-        kafkaService.processEvent(event);
+    public ResponseEntity<Void> sendEventToKafka(@RequestBody final String eventJson) {
+        LOGGER.info("--- Event [{}] received. Dispatching it to kafka service ---", eventJson);
+        kafkaService.processEvent(eventJson);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
