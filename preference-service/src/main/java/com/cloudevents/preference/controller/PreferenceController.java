@@ -1,6 +1,6 @@
 package com.cloudevents.preference.controller;
 
-import com.cloudevents.preference.domain.UserPreference;
+import com.cloudevents.preference.model.UserPreference;
 import com.cloudevents.preference.repository.PreferenceNotFoundException;
 import com.cloudevents.preference.service.PreferenceService;
 import org.slf4j.Logger;

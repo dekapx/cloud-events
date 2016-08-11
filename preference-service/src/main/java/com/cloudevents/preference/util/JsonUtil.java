@@ -1,6 +1,6 @@
 package com.cloudevents.preference.util;
 
-import com.cloudevents.preference.domain.*;
+import com.cloudevents.preference.model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

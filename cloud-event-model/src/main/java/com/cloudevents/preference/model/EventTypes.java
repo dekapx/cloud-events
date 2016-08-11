@@ -1,4 +1,4 @@
-package com.cloudevents.preference.domain;
+package com.cloudevents.preference.model;
 
 
 public enum EventTypes {

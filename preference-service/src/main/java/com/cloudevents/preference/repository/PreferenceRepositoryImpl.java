@@ -1,6 +1,6 @@
 package com.cloudevents.preference.repository;
 
-import com.cloudevents.preference.domain.UserPreference;
+import com.cloudevents.preference.model.UserPreference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

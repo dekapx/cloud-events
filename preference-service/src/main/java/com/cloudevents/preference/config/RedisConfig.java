@@ -1,6 +1,6 @@
 package com.cloudevents.preference.config;
 
-import com.cloudevents.preference.domain.UserPreference;
+import com.cloudevents.preference.model.UserPreference;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,8 @@
-GET: http://localhost:8080/preference/ping
-GET: http://localhost:8080/preference/findAll
-GET: http://localhost:8080/preference/find/{id}
-POST: http://localhost:8080/preference/update
-POST: http://localhost:8080/preference/save
+GET: http://localhost:8082/preference/ping
+GET: http://localhost:8082/preference/findAll
+GET: http://localhost:8082/preference/find/{id}
+POST: http://localhost:8082/preference/update
+POST: http://localhost:8082/preference/save
 
 JSON Request:
 {
@@ -27,3 +27,21 @@ JSON Request:
         "subscribed":true
     }
 }
+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+$ redis-server  - Start Redis server
+$ redis-cli     - Start Redis commandline interface
+
+- Redis commands -
+$ KEYS *    - get all keys
+    1) "UserPreference"
+$ HGETALL UserPreference    - list value associated with the key '1) "UserPreference"'
+
+$ FLUSHDB   - Removes data from your connection's CURRENT database.
+$ FLUSHALL  - Removes data from ALL databases.
++-----------------------------------------------------------------------------------------------------------------+
+- http://www.baeldung.com/spring-data-redis-tutorial
+- https://github.com/eugenp/tutorials/tree/master/spring-data-redis
++-----------------------------------------------------------------------------------------------------------------+

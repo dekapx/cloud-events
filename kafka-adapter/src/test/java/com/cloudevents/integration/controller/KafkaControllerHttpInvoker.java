@@ -6,6 +6,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class KafkaControllerHttpInvoker {
@@ -18,6 +19,10 @@ public class KafkaControllerHttpInvoker {
         final HttpPost postRequest = new HttpPost(URI);
         postRequest.setEntity(new StringEntity(contents));
 
+
+
+
+
         for(int i = 0; i < 20; i++) {
             final HttpResponse response = httpClient.execute(postRequest);
             if (response.getStatusLine().getStatusCode() != 200) {
@@ -25,6 +30,31 @@ public class KafkaControllerHttpInvoker {
             }
             TimeUnit.SECONDS.sleep(1);
         }
+    }
+
+    private static void test() throws Exception {
+        final String contents = "{\"userId\":\"003199b9-2b2e-415e-a05b-a8e6c550ca5f\",\"eventType\":\"SERVER_DEPLOY\"}";
+        final HttpClient httpClient = HttpClientBuilder.create().build();
+        final HttpPost postRequest = new HttpPost(URI);
+        postRequest.setEntity(new StringEntity(contents));
+
+        final KafkaHttpInvoker kafkaHttpInvoker = getKafkaHttpInvoker();
+
+        for(int i = 0; i < 20; i++) {
+            final HttpResponse response = kafkaHttpInvoker.invoke(httpClient, postRequest);
+            TimeUnit.SECONDS.sleep(1);
+        }
+    }
+
+    private static KafkaHttpInvoker getKafkaHttpInvoker() {
+        return (client, request) -> {
+            try {
+                return client.execute(request);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        };
     }
 
 }

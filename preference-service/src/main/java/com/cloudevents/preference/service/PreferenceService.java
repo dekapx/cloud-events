@@ -1,6 +1,6 @@
 package com.cloudevents.preference.service;
 
-import com.cloudevents.preference.domain.UserPreference;
+import com.cloudevents.preference.model.UserPreference;
 
 import java.util.Map;
 

@@ -25,5 +25,6 @@ $ bin\windows\kafka-topics --list --zookeeper localhost:2181
 $ bin/kafka-console-producer.sh --broker-list localhost:2181 --topic kafkatopic
 $ bin\windows\kafka-console-producer --broker-list localhost:2181 --topic kafkatopic
 +-----------------------------------------------------------------------------------------------------------------+
-
+localhost:8081/event/toKafka
+{"userId":"003199b9-2b2e-415e-a05b-a8e6c550ca5f","eventType":"DEPLOY_SERVER"}
 

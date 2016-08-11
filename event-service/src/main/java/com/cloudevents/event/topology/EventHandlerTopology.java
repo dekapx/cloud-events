@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-@Component("eventHandlerTopology")
+@Component
 public class EventHandlerTopology
 {
     private static final Logger LOG = LoggerFactory.getLogger(EventHandlerTopology.class);
@@ -25,6 +25,7 @@ public class EventHandlerTopology
     private static final String KAFKA_SPOUT = "kafka-spout";
     private static final String EVENT_PROCESSOR_BOLT = "event-processor-bolt";
     private static final String PREFERENCE_HANDLER_BOLT = "preference-handler-bolt";
+    private static final String EVENT_NOTIFIER_BOLT = "event-notifier-bolt";
 
     @PostConstruct
     public void init() {
@@ -38,6 +39,7 @@ public class EventHandlerTopology
         buildKafkaSpout(builder);
         buildEventProcessorBolt(builder);
         buildPreferenceHandlerBolt(builder);
+        buildEventNotifierBolt(builder);
 
         final LocalCluster cluster = deployTopologyToLocalCluster(builder);
     }
@@ -68,4 +70,7 @@ public class EventHandlerTopology
         builder.setBolt(PREFERENCE_HANDLER_BOLT, new PreferenceHandlerBolt()).shuffleGrouping(EVENT_PROCESSOR_BOLT);
     }
 
+    private void buildEventNotifierBolt(final TopologyBuilder builder) {
+        builder.setBolt(EVENT_NOTIFIER_BOLT, new EventNotifierBolt()).shuffleGrouping(PREFERENCE_HANDLER_BOLT);
+    }
 }
