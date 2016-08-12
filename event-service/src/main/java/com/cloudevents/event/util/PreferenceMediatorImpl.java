@@ -24,7 +24,7 @@ public class PreferenceMediatorImpl implements PreferenceMediator {
                 final HttpResponse response = httpClient.execute(getRequest);
                 if (response.getStatusLine().getStatusCode() != 200)
                 {
-                    throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
+                    throw new PreferenceNotFoundException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
                 }
 
                 final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));

@@ -14,7 +14,7 @@ public class EventNotifierBolt extends BaseBasicBolt {
 	@Override
 	public void execute(final Tuple tuple, final BasicOutputCollector collector) {
 		final Event event = (Event) tuple.getValueByField("event");
-		LOG.info("--- Event procesisng completed. Sending event to mobile device ---");
+		LOG.info("--- Event processing completed. Sending event to mobile device ---");
 	}
 
 	@Override
